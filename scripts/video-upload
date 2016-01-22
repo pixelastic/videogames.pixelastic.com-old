@@ -1,0 +1,105 @@
+#!/usr/bin/env ruby
+require 'json'
+require 'date'
+require 'shellwords'
+require 'awesome_print'
+
+# Upload videos to Youtube
+# Usage:
+# $ video-upload /path/to/files
+#     --title       : Name of th video. Defaults to the filename
+#     --description : Description of the video, usually the game name
+#     --tags        : Comma separated list of tags
+#     --playlist    : Name of the playlist
+class VideoUpload
+  def initialize(*args)
+    @default_title = get_named_arg(args, 'title')
+    @default_description = get_named_arg(args, 'description')
+    @default_tags = get_named_arg(args, 'tags')
+    @default_playlist = get_named_arg(args, 'playlist')
+    @client_secret = File.expand_path('./_client_secret_youtube.json')
+    @inputs = inputs(args)
+
+    if @default_playlist == ''
+      puts 'You need to specify the playlist name'
+      puts 'Usage:'
+      puts "`--playlist 'Playlist name'"
+      exit 1
+    end
+
+    unless File.exist?(@client_secret)
+      puts "Unable to find #{@client_secret}"
+      exit 1
+    end
+  end
+
+  # Returns the list of all input videos
+  def inputs(args)
+    args.map! do |file|
+      File.expand_path(file)
+    end
+
+    args.select! do |file|
+      File.exist?(file)
+    end
+    args
+  end
+
+  # Find the value of a named --argument
+  def get_named_arg(args, name)
+    args.each_with_index do |arg, index|
+      return args[index + 1] if arg == "--#{name}"
+    end
+    ''
+  end
+
+  def get_recording_date(filename)
+    basename = File.basename(filename, File.extname(filename))
+    year = "20#{basename[0..1]}".to_i
+    month = basename[2..3].to_i
+    day = basename[4..5].to_i
+    hour = basename[7..8].to_i
+    minute = basename[9..10].to_i
+    date = DateTime.new(year, month, day, hour, minute)
+
+    date.strftime('%Y-%m-%dT%H:%M:00.0Z')
+  end
+
+  def run
+    video_list = {}
+
+    @inputs.each do |video|
+      if @default_title == ''
+        title = File.basename(video, File.extname(video)).shellescape
+      else
+        title = @default_title
+      end
+      description = @default_description.shellescape
+      tags = @default_tags.shellescape
+      playlist = @default_playlist.shellescape
+      client_secret = @client_secret.shellescape
+      recording_date = get_recording_date(video)
+
+      options = [
+        "--title=#{title}",
+        "--description=#{description}",
+        "--tags=#{tags}",
+        "--playlist=#{playlist}",
+        '--category=Gaming',
+        '--default-language="en"',
+        '--default-audio-language="en"',
+        "--client-secrets=#{client_secret}",
+        "--recording-date='#{recording_date}'",
+        video.shellescape
+      ]
+
+      # puts "youtube-upload #{options.join(' ')}"
+      video_id = `youtube-upload #{options.join(' ')}`.strip
+
+      video_list[title] = video_id
+    end
+
+    puts JSON.pretty_generate(video_list)
+  end
+end
+VideoUpload.new(*ARGV).run

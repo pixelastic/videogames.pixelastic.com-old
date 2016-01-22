@@ -1,0 +1,27 @@
+{
+  "name": "videogames.pixelastic.com",
+  "version": "0.0.1",
+  "description": "Screenshot and videos of gameplay",
+  "author": "Tim \"pixelastic\" Carry",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com:pixelastic/videogames.pixelastic.com.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pixelastic/videogames.pixelastic.com/issues"
+  },
+  "engines": {
+    "node": "0.10.21",
+    "npm": "1.3.11"
+  },
+  "scripts": {
+    "video-upload": "./scripts/video-upload",
+    "build": "middleman build",
+    "serve": "middleman serve"
+  },
+  "devDependencies": {
+  },
+  "dependencies": {}
+}
+

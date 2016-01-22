@@ -1,0 +1,9 @@
+!!!
+%html
+  %head
+    %title
+      = current_page.data.title || "The Middleman"
+    = stylesheet_link_tag :site
+    = javascript_include_tag :all
+  %body{:class => page_classes}
+    = yield
