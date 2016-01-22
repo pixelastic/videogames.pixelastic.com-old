@@ -1,0 +1,17 @@
+---
+title: Tomb Raider
+---
+%div.t-tombraider
+  %h2
+    =data.tombraider.name
+
+  %div.c-sections
+    - data.tombraider.sections.each do |section|
+      %div.c-section
+        %h3.c-section--name
+          =section.name
+
+        %div.c-cards
+          - section.items.each do |item|
+            %div.c-card
+              =display_media(item, data.tombraider)

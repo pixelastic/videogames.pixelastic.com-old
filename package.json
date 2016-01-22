@@ -16,12 +16,15 @@
     "npm": "1.3.11"
   },
   "scripts": {
+    "postinstall": "./scripts/postinstall",
     "video-upload": "./scripts/video-upload",
     "build": "middleman build",
     "serve": "middleman serve"
   },
   "devDependencies": {
   },
-  "dependencies": {}
+  "dependencies": {
+    "normalize.css": "3.0.3"
+  }
 }
 

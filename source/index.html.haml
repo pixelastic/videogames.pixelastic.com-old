@@ -1,13 +1,7 @@
 ---
-title: Welcome to Middleman
+title: Video games
 ---
 
-%div.welcome
-  %div.logo
-    %img{:src => "./images/middleman-logo.svg"}
-
-  %h1
-    Middleman is Running
-
-  %p.doc
-    =link_to 'Somewhere', 'http://www.pixelastic.com'
+- data.index.each do |section_name|
+  - section = data.send(section_name.to_sym)
+  =link_to section.name, "#{section.slug}.html"
