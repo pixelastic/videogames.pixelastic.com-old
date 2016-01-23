@@ -1,17 +1,33 @@
 ---
 title: Tomb Raider
 ---
+-game = data.tombraider
+
 %div.t-tombraider
-  %h2
-    =data.tombraider.name
+  %h2.u-page-title
+    =link_to game.name, "#{game.slug}.html"
 
-  %div.c-sections
-    - data.tombraider.sections.each do |section|
-      %div.c-section
-        %h3.c-section--name
+  -# Tabs
+  %ul.c-tabs
+    -game.sections.each_with_index do |section, index|
+      - tab_id = "tab_#{index}"
+      %li.c-tab
+        %input.c-tab--radio{type: 'radio', 
+          name: 'tabs', 
+          id: tab_id, 
+          value: tab_id,
+          checked: index == 0}
+
+        %label.c-tab--title{for: tab_id}
           =section.name
-
-        %div.c-cards
-          - section.items.each do |item|
-            %div.c-card
-              =display_media(item, data.tombraider)
+        -# Because the `label` is display:inline-block, we must careful as to not
+        -# add a new line between those two elements
+        %div.c-tab--content
+          %div.c-cards
+            - section.items.each do |item|
+              -link = media_link(item, game)
+              -thumbnail = media_thumbnail(item, game)
+              %a.c-card{href: link}
+                %div.c-card--image{style: "background-image:url(#{thumbnail});"}
+                %div.c-card--name
+                  =item
