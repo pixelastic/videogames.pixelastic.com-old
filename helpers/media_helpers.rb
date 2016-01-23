@@ -15,7 +15,7 @@ module MediaHelpers
   def media_thumbnail(name, section)
     return "/images/#{section.slug}/#{name}" if image?(name)
     id = youtube_id(name, section)
-    "http://img.youtube.com/vi/#{id}/maxresdefault.jpg"
+    "http://img.youtube.com/vi/#{id}/hqdefault.jpg"
   end
 
   def media_link(name, section)
