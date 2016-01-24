@@ -1,0 +1,35 @@
+---
+title: Pillars of Eternity
+---
+-game = data.pillars
+
+%div.t-tombraider
+  %h2.u-page-title
+    =link_to game.name, "#{game.slug}.html"
+
+  -# Tabs
+  %ul.c-tabs
+    -game.sections.each_with_index do |section, index|
+      - tab_id = "tab_#{index}"
+      %li.c-tab
+        %input.c-tab--radio{type: 'radio', 
+          name: 'tabs', 
+          id: tab_id, 
+          value: tab_id,
+          checked: index == 0}
+
+        %label.c-tab--title{for: tab_id}
+          =section.name
+        -# Because the `label` is display:inline-block, we must careful as to not
+        -# add a new line between those two elements
+        %div.c-tab--content
+          %div.c-cards
+            - section.items.each do |item|
+              -link = media_link(item, game)
+              -thumbnail = media_thumbnail(item, game)
+              -classname = 'c-card__video' if video?(item)
+              %a.c-card.js-fancybox{href: link, rel: tab_id, class: classname}
+                %div.c-card--image{style: "background-image:url(#{thumbnail});"}
+                -# %div.c-card--name
+                -#   =item
+
