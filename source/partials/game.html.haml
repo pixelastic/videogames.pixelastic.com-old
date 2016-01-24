@@ -3,8 +3,8 @@ title: FIXME
 ---
 -game = data.send(game_name.to_sym)
 
-%div.t-tombraider
-  %h2.u-page-title
+%div{class: ".t-#{game.slug}"}
+  %h2
     =link_to game.name, "#{game.slug}.html"
 
   -# Tabs

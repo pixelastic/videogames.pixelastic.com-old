@@ -1,5 +1,5 @@
 // Main page title
-.u-page-title {
+h2 {
   text-align: left;
   font-size: 3rem;
   font-family: 'Orbitron';
@@ -13,12 +13,14 @@
   }
 }
 
+h3 {
+  text-align: left;
+  font-size: 2rem;
+  font-family: 'Orbitron';
+  margin:1.5rem 0 0 0;
+  color: $color-text;
+  padding-bottom: 0.5rem;
+}
+
 // .u-section-title {
-//   text-align: left;
-//   font-size: 2rem;
-//   font-family: 'Orbitron';
-//   margin:1.5rem 0 0 1rem;
-//   color: $color-text;
-//   padding-bottom: 0.5rem;
-//   border-bottom: 1px solid $color-text;
 // }
