@@ -1,20 +1,27 @@
-!!!
+!!! 5
 %html
   %head
+    %meta{charset: "utf-8"}
+    %meta{'http-equiv': "X-UA-Compatible", content: "IE=edge"}
     %title
-      = current_page.data.title || "The Middleman"
+      = current_page.data.title
+    <meta name="description" content="Various screenshots and footage of gameplay">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     = stylesheet_link_tag :main
+    %link{href: "//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css", rel: "stylesheet"}
+    %link{rel: "shortcut icon", href: "/favicon.ico"}
 
   %body
     %div.l-container
       %div.l-header
-        =partial('partials/header')
+        =partial('_partials/header')
 
       %div.l-content
         %div.o-outer-container
           = yield
 
       %div.l-footer
-        =partial('partials/footer')
+        =partial('_partials/footer')
 
+    %script{src: '//cdn.jsdelivr.net/g/jquery@2.2.0,fancybox@2.1.5(jquery.fancybox.pack.js+helpers/jquery.fancybox-media.min.js)'}
     = javascript_include_tag :all

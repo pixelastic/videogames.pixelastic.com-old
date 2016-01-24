@@ -19,12 +19,11 @@
     "postinstall": "./scripts/postinstall",
     "video-upload": "./scripts/video-upload",
     "build": "middleman build",
-    "serve": "middleman serve"
+    "serve": "middleman serve",
+    "deploy": "./scripts/deploy"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
     "normalize.css": "3.0.3"
   }
 }
-

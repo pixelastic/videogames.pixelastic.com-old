@@ -27,7 +27,8 @@ title: Tomb Raider
             - section.items.each do |item|
               -link = media_link(item, game)
               -thumbnail = media_thumbnail(item, game)
-              %a.c-card{href: link}
+              -classname = 'c-card__video' if video?(item)
+              %a.c-card.js-fancybox{href: link, rel: tab_id, class: classname}
                 %div.c-card--image{style: "background-image:url(#{thumbnail});"}
-                %div.c-card--name
-                  =item
+                -# %div.c-card--name
+                -#   =item

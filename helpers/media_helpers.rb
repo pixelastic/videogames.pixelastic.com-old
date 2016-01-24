@@ -21,7 +21,7 @@ module MediaHelpers
   def media_link(name, section)
     return "/images/#{section.slug}/#{name}" if image?(name)
     id = youtube_id(name, section)
-    "//www.youtube.com/embed/#{id}"
+    "//www.youtube.com/watch?v=#{id}"
   end
 
   # def display_media(media, section)

@@ -24,6 +24,7 @@ $card-image-hover-color: $blue;
   @include flex-basis(15em);
   @include flex-grow(1);
   @include transition (all 0.2s ease-in-out);
+  position: relative;
   max-width: 32em;
   background-color: $card-background;
   border-radius: $base-border-radius;
@@ -44,10 +45,23 @@ $card-image-hover-color: $blue;
   }
 }
 
+.c-card__video:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url("/images/ui/video-mask.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .c-card--image {
   overflow: hidden;
-  height: 150px;
-  max-height: 150px;
+  height: 200px;
+  max-height: 200px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
