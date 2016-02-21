@@ -1,6 +1,13 @@
 $(document).ready(() => {
-  // Adding lazy loading on all images, except the first 9 of each tab
-  $('.c-tab').each((tab) => {
-    // console.info($(tab).find('.c-card').length);
+  // Lazy load images when the got into the viewport
+  let lazyLoadedCards = $('.c-card--image[data-lazyload]');
+  function onVisible(card) {
+    let $card = $(card);
+    let imageUrl = $card.data('lazyload');
+    $card.css('backgroundImage', `url(${imageUrl}`);
+  }
+
+  _.each(lazyLoadedCards, (card) => {
+    inViewport(card, onVisible);
   });
 });
