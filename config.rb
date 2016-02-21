@@ -6,6 +6,9 @@ page '/*.txt', layout: false
 # Do not build partials
 ignore '/partials/*'
 
+# Uncomment to debug builds, bypassing all image copy
+# ignore '/images/*'
+
 # Build a page for each game
 data.index.each do |game_name|
   proxy "/#{game_name}.html",
@@ -17,3 +20,11 @@ end
 configure :development do
   activate :livereload
 end
+
+# Pass JavaScript through babel
+ignore '/javascripts/*'
+activate :external_pipeline,
+         name: :babel,
+         command: "npm run middleman-babel #{build? ? 'build' : 'serve'}",
+         source: 'sources/',
+         latency: 1

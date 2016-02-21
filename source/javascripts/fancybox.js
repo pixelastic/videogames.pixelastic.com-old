@@ -1,10 +1,10 @@
-$(document).ready(function() {
+$(document).ready(() => {
   $('.js-fancybox').fancybox({
-    helpers : {
+    helpers: {
       overlay: {
         locked: false
       },
-			media : {}
-		}
+      media: {}
+    }
   });
 });
