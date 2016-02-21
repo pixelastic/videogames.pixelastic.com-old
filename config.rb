@@ -20,11 +20,3 @@ end
 configure :development do
   activate :livereload
 end
-
-# Pass JavaScript through babel
-ignore '/javascripts/*'
-activate :external_pipeline,
-         name: :babel,
-         command: "npm run middleman-babel #{build? ? 'build' : 'serve'}",
-         source: 'sources/',
-         latency: 1
