@@ -4,7 +4,7 @@ module MediaHelpers
   end
 
   def image?(media)
-    File.extname(media) == '.jpg'
+    ['.jpg', '.png'].include?(File.extname(media))
   end
 
   def youtube_id(video, section)

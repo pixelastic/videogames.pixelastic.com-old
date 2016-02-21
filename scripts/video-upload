@@ -7,7 +7,7 @@ require 'awesome_print'
 # Upload videos to Youtube
 # Usage:
 # $ video-upload /path/to/files
-#     --title       : Name of th video. Defaults to the filename
+#     --title       : Name of the video. Defaults to the filename
 #     --description : Description of the video, usually the game name
 #     --tags        : Comma separated list of tags
 #     --playlist    : Name of the playlist
