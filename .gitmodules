@@ -4,3 +4,6 @@
 [submodule "source/images/pillars"]
 	path = source/images/pillars
 	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-pillars.git
+[submodule "source/images/warhammerquest"]
+	path = source/images/warhammerquest
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-warhammerquest.git
