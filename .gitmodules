@@ -7,3 +7,6 @@
 [submodule "source/images/warhammerquest"]
 	path = source/images/warhammerquest
 	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-warhammerquest.git
+[submodule "source/images/gta5"]
+	path = source/images/gta5
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-gta5.git
