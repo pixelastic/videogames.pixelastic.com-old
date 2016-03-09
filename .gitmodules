@@ -1,0 +1,3 @@
+[submodule "source/images/tombraider"]
+	path = source/images/tombraider
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-tombraider.git
