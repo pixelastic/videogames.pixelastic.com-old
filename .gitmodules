@@ -1,3 +1,6 @@
 [submodule "source/images/tombraider"]
 	path = source/images/tombraider
 	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-tombraider.git
+[submodule "source/images/pillars"]
+	path = source/images/pillars
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-pillars.git
