@@ -5,6 +5,7 @@ page '/*.txt', layout: false
 
 # Do not build partials
 ignore '/partials/*'
+ignore '/images/*/.git'
 
 # Uncomment to debug builds, bypassing all image copy
 # ignore '/images/*'
