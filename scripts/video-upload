@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'json'
 require 'date'
+require 'fileutils'
 require 'shellwords'
 require 'awesome_print'
 
@@ -18,7 +19,8 @@ class VideoUpload
     @default_tags = get_named_arg(args, 'tags')
     @default_playlist = get_named_arg(args, 'playlist')
     @client_secret = File.expand_path('./_client_secret_youtube.json')
-    @inputs = inputs(args)
+    @directory = directory(args)
+    @inputs = Dir["#{@directory}/*.mp4"]
 
     if @default_playlist == ''
       puts 'You need to specify the playlist name'
@@ -33,8 +35,8 @@ class VideoUpload
     end
   end
 
-  # Returns the list of all input videos
-  def inputs(args)
+  # Returns the directory where to look for videos from the arguments
+  def directory(args)
     args.map! do |file|
       File.expand_path(file)
     end
@@ -42,7 +44,7 @@ class VideoUpload
     args.select! do |file|
       File.exist?(file)
     end
-    args
+    args[0]
   end
 
   # Find the value of a named --argument
@@ -65,15 +67,38 @@ class VideoUpload
     date.strftime('%Y-%m-%dT%H:%M:00.0Z')
   end
 
+  def read_done_list
+    done_file = File.join(@directory, 'done.txt')
+
+    # Return an empty hash if no such file
+    return {} unless File.exist?(done_file)
+
+    # Read the file content
+    JSON.parse(File.open(done_file, 'rb').read)
+  end
+
+  # Adds a new youtube id to the list of done files
+  def add_done_file(name, id)
+    done_list = read_done_list
+    done_list[name] = id
+
+    done_file = File.join(@directory, 'done.txt')
+    File.open(done_file, 'w') do |file|
+      file.write(JSON.pretty_generate(done_list))
+    end
+  end
+
   def run
-    video_list = {}
+    done_list = read_done_list
+    has_failed_attempt = false
 
     @inputs.each do |video|
-      if @default_title == ''
-        title = File.basename(video, File.extname(video)).shellescape
-      else
-        title = @default_title
-      end
+      file_basename = File.basename(video).shellescape
+
+      # Skip files that are already processed in a previous run
+      next if done_list.key?(file_basename)
+
+      title = @default_title == '' ? file_basename : @default_title
       description = @default_description.shellescape
       tags = @default_tags.shellescape
       playlist = @default_playlist.shellescape
@@ -93,13 +118,24 @@ class VideoUpload
         video.shellescape
       ]
 
-      # puts "youtube-upload #{options.join(' ')}"
-      video_id = `youtube-upload #{options.join(' ')}`.strip
+      command = "youtube-upload #{options.join(' ')}"
+      p command
+      video_id = `#{command}`.strip
+      is_error = $CHILD_STATUS.exitstatus > 0
 
-      video_list[title] = video_id
+      # No error, we update the list of done files
+      unless is_error
+        add_done_file(title, video_id)
+        next
+      end
+
+      puts '⚠ ERROR ⚠'
+      puts "Unable to push #{title}"
+      has_failed_attempt = true
     end
 
-    puts JSON.pretty_generate(video_list)
+    # If afterward we still have failed attempts, we start again
+    run if has_failed_attempt
   end
 end
 VideoUpload.new(*ARGV).run
