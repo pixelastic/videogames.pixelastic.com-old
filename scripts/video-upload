@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
-require 'json'
+require 'English'
+require 'awesome_print'
 require 'date'
 require 'fileutils'
+require 'json'
 require 'shellwords'
-require 'awesome_print'
 
 # Upload videos to Youtube
 # Usage:
@@ -20,7 +21,7 @@ class VideoUpload
     @default_playlist = get_named_arg(args, 'playlist')
     @client_secret = File.expand_path('./_client_secret_youtube.json')
     @directory = directory(args)
-    @inputs = Dir["#{@directory}/*.mp4"]
+    @inputs = Dir["#{@directory}/*.mp4"].sort
 
     if @default_playlist == ''
       puts 'You need to specify the playlist name'
@@ -94,9 +95,14 @@ class VideoUpload
 
     @inputs.each do |video|
       file_basename = File.basename(video).shellescape
+      puts '=========='
+      puts "Filename: #{file_basename}"
 
       # Skip files that are already processed in a previous run
-      next if done_list.key?(file_basename)
+      if done_list.key?(file_basename)
+        puts 'SKIP, ALREADY DONE'
+        next
+      end
 
       title = @default_title == '' ? file_basename : @default_title
       description = @default_description.shellescape
@@ -104,6 +110,11 @@ class VideoUpload
       playlist = @default_playlist.shellescape
       client_secret = @client_secret.shellescape
       recording_date = get_recording_date(video)
+
+      compressed_file_size = File.size(video).to_f / 2**20
+      formatted_file_size = '%.2f' % compressed_file_size
+
+      puts "Filesize: #{formatted_file_size}MB"
 
       options = [
         "--title=#{title}",
@@ -119,17 +130,18 @@ class VideoUpload
       ]
 
       command = "youtube-upload #{options.join(' ')}"
-      p command
+      puts "Command: #{command}"
       video_id = `#{command}`.strip
       is_error = $CHILD_STATUS.exitstatus > 0
 
       # No error, we update the list of done files
       unless is_error
+        puts "✓ SUCCESS"
         add_done_file(title, video_id)
         next
       end
 
-      puts '⚠ ERROR ⚠'
+      puts '⚠ ERROR'
       puts "Unable to push #{title}"
       has_failed_attempt = true
     end
