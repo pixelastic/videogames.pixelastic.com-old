@@ -10,3 +10,7 @@
 [submodule "source/images/gta5"]
 	path = source/images/gta5
 	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-gta5.git
+[submodule "source/images/hearthstone"]
+	path = source/images/hearthstone
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-hearthstone.git
+	branch = master

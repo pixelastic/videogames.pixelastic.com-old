@@ -1,5 +1,0 @@
-Set game title based on data
-Move repo to github
-Retry on video upload failure
-Steam import script
-Lazyload images
