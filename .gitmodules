@@ -14,3 +14,7 @@
 	path = source/images/hearthstone
 	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-hearthstone.git
 	branch = master
+[submodule "source/images/commandos"]
+	path = source/images/commandos
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-commandos.git
+	branch = master
