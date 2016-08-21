@@ -26,3 +26,7 @@
 	path = source/images/torchlight2
 	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-torchlight2.git
 	branch = master
+[submodule "source/images/misc"]
+	path = source/images/misc
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-misc.git
+	branch = master
