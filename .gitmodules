@@ -22,3 +22,7 @@
 	path = source/images/witcher2
 	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-witcher2.git
 	branch = master
+[submodule "source/images/torchlight2"]
+	path = source/images/torchlight2
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-torchlight2.git
+	branch = master
