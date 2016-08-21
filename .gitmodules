@@ -18,3 +18,7 @@
 	path = source/images/commandos
 	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-commandos.git
 	branch = master
+[submodule "source/images/witcher2"]
+	path = source/images/witcher2
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-witcher2.git
+	branch = master
