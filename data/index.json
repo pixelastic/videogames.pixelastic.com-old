@@ -1,4 +1,5 @@
 [
+  "misc",
   "torchlight2",
   "witcher2",
   "commandos",
@@ -6,6 +7,5 @@
   "gta5",
   "warhammerquest",
   "tombraider",
-  "pillars",
-  "misc"
+  "pillars"
 ]
