@@ -30,3 +30,7 @@
 	path = source/images/misc
 	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-misc.git
 	branch = master
+[submodule "source/images/skyrim"]
+	path = source/images/skyrim
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-skyrim.git
+	branch = master
