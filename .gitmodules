@@ -34,3 +34,7 @@
 	path = source/images/skyrim
 	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-skyrim.git
 	branch = master
+[submodule "source/images/mordheim"]
+	path = source/images/mordheim
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-mordheim.git
+	branch = master
