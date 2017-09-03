@@ -38,3 +38,7 @@
 	path = source/images/mordheim
 	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-mordheim.git
 	branch = master
+[submodule "source/images/batman-arkham-city"]
+	path = source/images/batman-arkham-city
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-batman-arkham-city.git
+	branch = master
