@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-middleman build && \
+# middleman build && \
 rsync \
       --chmod=Du=rwx,Dg=rwx,Do=rx,Fu=rw,Fg=rw,Fo=r \
       --verbose \
@@ -11,4 +11,4 @@ rsync \
       --copy-links \
       --compress \
       ./build/ \
-      pixelastic:/var/www/pixelastic.com/videogames.pixelastic.com/
+      pixelastic:/var/www/videogames.pixelastic.com/
