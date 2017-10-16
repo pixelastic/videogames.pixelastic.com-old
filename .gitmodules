@@ -50,3 +50,11 @@
 	path = source/images/dishonored
 	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-dishonored.git
 	branch = master
+[submodule "source/images/hitman-absolution"]
+	path = source/images/hitman-absolution
+	url = pixelastic@bitbucket.org:pixelastic/videogames.pixelastic.com-hitman-absolution.git
+	branch = master
+[submodule "source/images/thief"]
+	path = source/images/thief
+	url = pixelastic@bitbucket.org:pixelastic/videogames.pixelastic.com-thief.git
+	branch = master
