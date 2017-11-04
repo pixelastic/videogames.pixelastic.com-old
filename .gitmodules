@@ -58,3 +58,15 @@
 	path = source/images/thief
 	url = pixelastic@bitbucket.org:pixelastic/videogames.pixelastic.com-thief.git
 	branch = master
+[submodule "source/images/lego-harry-potter-years-5-7"]
+	path = source/images/lego-harry-potter-years-5-7
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-lego-harry-potter-year-5-7.git
+	branch = master
+[submodule "source/images/tombraider-anniversary"]
+	path = source/images/tombraider-anniversary
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-tombraider-anniversary.git
+	branch = master
+[submodule "source/images/gta4-lost-and-damned"]
+	path = source/images/gta4-lost-and-damned
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-gta4-lost-and-damned.git
+	branch = master
