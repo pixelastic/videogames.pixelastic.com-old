@@ -13,14 +13,25 @@ new_data = {
   tabs: []
 }
 
+# Convert youtube videos
+if data["youtube"]
+  videos = data['youtube']
+  videos.each do |file, id|
+    File.write(File.join(base_path, "#{file}.youtube"), id)
+  end
+end
+
 data["sections"].each do |section|
   path = section['name'].downcase
   new_dir = File.join(base_path, path)
   FileUtils.mkdir_p(new_dir)
   section['items'].each do |file|
+    file.gsub!('mp4', 'youtube')
     old_path = File.join(base_path, file)
-    new_path = File.join(new_dir, file)
-    FileUtils.mv(old_path, new_path) if File.exist?(old_path)
+    new_path = File.join(new_dir, File.basename(file))
+    if File.exist?(old_path) && old_path != new_path
+      FileUtils.mv(old_path, new_path) 
+    end
   end
 
   new_data[:tabs].push(

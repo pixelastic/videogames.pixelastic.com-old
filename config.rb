@@ -10,22 +10,13 @@ ignore '/images/*/.git'
 # Uncomment to debug builds, bypassing all image copy
 # ignore '/images/*'
 
-proxy "/pillars.html",
-      '/partials/game.html',
-      locals: { game_name: 'pillars' },
-      ignore: true
-proxy "/tombraider.html",
-      '/partials/game.html',
-      locals: { game_name: 'tombraider' },
-      ignore: true
-
-# # Build a page for each game
-# data.index.each do |game_name|
-#   proxy "/#{game_name}.html",
-#         '/partials/game.html',
-#         locals: { game_name: game_name },
-#         ignore: true
-# end
+# Build a page for each game
+data.index.each do |game_name|
+  proxy "/#{game_name}.html",
+        '/partials/game.html',
+        locals: { game_name: game_name },
+        ignore: true
+end
 
 configure :development do
   activate :livereload
@@ -35,7 +26,7 @@ end
 helpers do
   # Get all files from a directory
   def files_from_dir(path)
-    return Dir[File.join(path, '*.{jpg,png,mp4}')].sort.map do |filepath|
+    return Dir[File.join(path, '*.{jpg,png,youtube}')].sort.map do |filepath|
       filepath.gsub('./source/', '')
     end
   end
@@ -83,7 +74,7 @@ helpers do
 
   # Check if media is a video
   def video?(media)
-    File.extname(media) == '.mp4'
+    File.extname(media) == '.youtube'
   end
 
   # Check if the media is an image

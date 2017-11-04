@@ -1,13 +1,10 @@
 {
   "name": "Misc",
   "slug": "misc",
-  "sections": [{
-    "name": "Steam",
-    "items": [
-      "2015-09-11_00001.jpg",
-      "2015-09-11_00002.jpg",
-      "2015-10-25_00001.jpg",
-      "2015-10-25_00002.jpg"
-    ]
-  }]
+  "tabs": [
+    {
+      "name": "Steam",
+      "path": "steam"
+    }
+  ]
 }
