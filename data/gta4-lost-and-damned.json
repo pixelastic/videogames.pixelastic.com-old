@@ -1,0 +1,10 @@
+{
+  "name": "GTA IV - Lost and Damned",
+  "slug": "gta4-lost-and-damned",
+  "tabs": [
+    {
+      "name": "Gameplay",
+      "path": "gameplay"
+    }
+  ]
+}

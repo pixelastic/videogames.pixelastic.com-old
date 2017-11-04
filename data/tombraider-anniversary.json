@@ -1,0 +1,10 @@
+{
+  "name": "Tomb Raider Anniversary",
+  "slug": "tombraider-anniversary",
+  "tabs": [
+    {
+      "name": "Gameplay",
+      "path": "gameplay"
+    }
+  ]
+}

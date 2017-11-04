@@ -88,7 +88,9 @@ class VideoUpload
       file.write(JSON.pretty_generate(done_list))
     end
 
-    File.write(File.join(@directory, "#{name}.youtube"), id)
+    # Write a .youtube file with the id as content
+    basename = File.basename(name, File.extname(name))
+    File.write(File.join(@directory, "#{basename}.youtube"), id)
   end
 
   def run
