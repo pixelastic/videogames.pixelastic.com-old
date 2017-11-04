@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+require 'json'
+require 'fileutils'
+
+slug = ARGV[0]
+
+data = JSON.parse(File.open("./data/#{slug}.json").read)
+base_path = "./source/images/#{slug}"
+new_data = {
+  name: data['name'],
+  slug: data['slug'],
+  tabs: []
+}
+
+data["sections"].each do |section|
+  path = section['name'].downcase
+  new_dir = File.join(base_path, path)
+  FileUtils.mkdir_p(new_dir)
+  section['items'].each do |file|
+    old_path = File.join(base_path, file)
+    new_path = File.join(new_dir, file)
+    FileUtils.mv(old_path, new_path) if File.exist?(old_path)
+  end
+
+  new_data[:tabs].push(
+    name: section['name'],
+    path: path
+  )
+end
+puts new_data
+
+

@@ -2,6 +2,7 @@
 ---
 -game = data.send(game_name.to_sym)
 -content_for(:title, game.name)
+-tabs = game_files(game)
 
 %div{class: ".t-#{game.slug}"}
   %h2
@@ -9,29 +10,27 @@
 
   -# Tabs
   %ul.c-tabs
-    -game.sections.each_with_index do |section, section_index|
-      - tab_id = "tab_#{section_index}"
+    -tabs.each_with_index do |tab, tab_index|
+      - tab_id = "tab_#{tab_index}"
       %li.c-tab
         %input.c-tab--radio{type: 'radio', 
           name: 'tabs', 
           id: tab_id, 
           value: tab_id,
-          checked: section_index == 0}
+          checked: tab_index == 0}
 
         %label.c-tab--title{for: tab_id}
-          =section.name
+          =tab[:name]
         -# Because the `label` is display:inline-block, we must be careful as to 
         -# not add a new line between those two elements
         %div.c-tab--content
           %div.c-cards
-            - section.items.each_with_index do |item, item_index|
-              -link = media_link(item, game)
-              -thumbnail = media_thumbnail(item, game)
-              -classname = 'c-card__video' if video?(item)
+            - tab[:files].each_with_index do |file, file_index|
+              -link = media_link(file)
+              -thumbnail = media_thumbnail(file)
+              -classname = 'c-card__video' if video?(file)
               %a.c-card.js-fancybox{href: link, rel: tab_id, class: classname}
-                - if item_index < 9
+                - if file_index < 9
                   %div.c-card--image{'style': "background-image: url(#{thumbnail})"}
                 - else
                   %div.c-card--image{'data-lazyload': thumbnail}
-                -# %div.c-card--name
-                -#   =item
