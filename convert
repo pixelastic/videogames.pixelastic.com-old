@@ -4,7 +4,8 @@ require 'fileutils'
 
 slug = ARGV[0]
 
-data = JSON.parse(File.open("./data/#{slug}.json").read)
+json_file = "./data/#{slug}.json"
+data = JSON.parse(File.open(json_file).read)
 base_path = "./source/images/#{slug}"
 new_data = {
   name: data['name'],
@@ -27,6 +28,8 @@ data["sections"].each do |section|
     path: path
   )
 end
-puts new_data
+
+new_json = JSON.pretty_generate(new_data)
+File.write(json_file, new_json)
 
 
