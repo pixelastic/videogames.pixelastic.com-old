@@ -98,7 +98,7 @@ helpers do
   # Cloudinary wrapper function
   def cloudinary(url, options)
     base_url = 'http://res.cloudinary.com/pixelastic-videogames/image/fetch/'
-    "#{base_url}#{options.join(',')}/http://videogames.pixelastic.com#{url}"
+    "#{base_url}#{options.join(',')}/http://videogames.pixelastic.com/#{url}"
   end
 
   # Resized thumbnailed through cloudinary
