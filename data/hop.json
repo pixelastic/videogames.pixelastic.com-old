@@ -1,5 +1,9 @@
 [
   {
+    "slug": "misc",
+    "name": "Misc"
+  },
+  {
     "name": "Spelunky",
     "slug": "spelunky"
   },
@@ -33,17 +37,7 @@
   },
   {
     "name": "Batman Arkham City",
-    "slug": "batman-arkham-city",
-    "tabs": [
-      {
-        "name": "Gameplay",
-        "path": "gameplay"
-      },
-      {
-        "name": "Artworks",
-        "path": "artworks"
-      }
-    ]
+    "slug": "batman-arkham-city"
   },
   {
     "name": "Mordheim",
@@ -224,9 +218,5 @@
         "path": "extension"
       }
     ]
-  },
-  {
-    "slug": "misc",
-    "name": "Misc"
   }
 ]

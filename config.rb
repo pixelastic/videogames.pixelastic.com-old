@@ -1,3 +1,5 @@
+require 'hash_dot'
+
 # With no layout
 page '/*.xml', layout: false
 page '/*.json', layout: false
@@ -11,10 +13,10 @@ ignore '/images/*/.git'
 # ignore '/images/*'
 
 # Build a page for each game
-data.index.each do |game_name|
-  proxy "/#{game_name}.html",
+data.index.each do |game|
+  proxy "/#{game.slug}.html",
         '/partials/game.html',
-        locals: { game_name: game_name },
+        locals: { game: game },
         ignore: true
 end
 
@@ -26,22 +28,28 @@ end
 helpers do
   # Get all files from a directory
   def files_from_dir(path)
-    return Dir[File.join(path, '*.{jpg,png,youtube}')].sort.map do |filepath|
+    Dir[File.join(path, '*.{jpg,png,youtube}')].sort.map do |filepath|
       filepath.gsub('./source/', '')
     end
   end
 
   # Getting all files from a game
   def game_files(game)
-    tabs = []
+    files = []
     game_path = "./source/images/#{game.slug}"
-    game.tabs.each do |data|
-      tabs.push(
-        name: data.name,
-        files: files_from_dir(File.join(game_path, data.path))
+
+    # Use tabs if defined, or only one at the root if not
+    tabs = game.tabs
+    tabs = [{ name: 'Gameplay', path: '.' }.to_dot] if tabs.nil?
+
+    # Build a list of tabs with name and list of files
+    tabs.each do |tab|
+      files.push(
+        name: tab.name,
+        files: files_from_dir(File.join(game_path, tab.path))
       )
     end
-    tabs
+    files
   end
 
   # Thumbnail of the media

@@ -70,3 +70,15 @@
 	path = source/images/gta4-lost-and-damned
 	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-gta4-lost-and-damned.git
 	branch = master
+[submodule "source/images/spelunky"]
+	path = source/images/spelunky
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-spelunky.git
+	branch = master
+[submodule "source/images/tinybrains"]
+	path = source/images/tinybrains
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-tinybrains.git
+	branch = master
+[submodule "source/images/castlecrashers"]
+	path = source/images/castlecrashers
+	url = git@bitbucket.org:pixelastic/videogames.pixelastic.com-castlecrashers.git
+	branch = master

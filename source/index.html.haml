@@ -3,12 +3,11 @@
 -content_for(:title, "Videogames")
 
 %div.c-cards
-  - data.index.each do |section_name|
-    - section = data.send(section_name.to_sym)
-    - cover = "/images/covers/#{section.slug}.jpg"
+  - data.index.each do |game|
+    - cover = "/images/covers/#{game.slug}.jpg"
     - cover = cloudinary_thumbnail(cover) if build?
-    - link = "/#{section.slug}.html"
-    %a.c-card{href: link}
+    - link = "/#{game.slug}.html"
+    %a.c-card.__with_name{href: link}
       %div.c-card--image{style: "background-image:url(#{cover});"}
       %div.c-card--name
-        =section.name
+        =game.name
